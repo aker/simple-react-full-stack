@@ -12,7 +12,7 @@ const oauth2 = simpleOauthModule.create({
       secret: 'secret',
     },
     auth: {
-      tokenHost: 'http://localhost:8080',
+      tokenHost: 'http://localhost:8181',
       tokenPath: '/oauth/token',
       authorizePath: '/oauth/authorize'
     },

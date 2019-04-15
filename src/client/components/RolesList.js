@@ -15,7 +15,7 @@ const RolesList = () => (
             console.log("roleslist:accesstoken=", accessToken);
     
             let role = "";
-            fetch("http://localhost:8180/roles/1", requestOptions)
+            fetch("http://localhost:8080/roles/1", requestOptions)
             .then(res => res.json())
             .then(data => {
                 console.log("roleslist.data:", data);
