@@ -2,7 +2,7 @@ const rules = {
   visitor: {
     static: ["posts:list", "home-page:visit"]
   },
-  writer: {
+  role_user: {
     static: [
       "posts:list",
       "posts:create",

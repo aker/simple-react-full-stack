@@ -50,18 +50,18 @@ const PostsList = () => (
                   rules = {user.permissions}
                   perform="auth:roles:update"
                   yes={() => (
-                      <button className="btn btn-sm btn-default">
+                    <button className="btn btn-sm btn-default">
                       Edit Role
-                      </button>
+                    </button>
                   )}
                 />
                 <MyCan
                   rules = {user.permissions}
                   perform="auth:policies:update"
                   yes={() => (
-                      <button className="btn btn-sm btn-default">
+                    <button className="btn btn-sm btn-default">
                       Edit Policy
-                      </button>
+                    </button>
                   )}
                 />
               </td>

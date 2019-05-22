@@ -15,13 +15,13 @@ const RolesList = () => (
             
             console.log("roleslist:accesstoken=", accessToken);
             
-            let roles;
+            /* let roles;
             fetch("http://localhost:8080/api/roles?code=role_user", requestOptions)
             .then(res => res.json())
             .then(data => {
                 console.log("roleslist.data:", data);
                 roles = data;
-            });
+            }); */
 
             return (
                 <div>
