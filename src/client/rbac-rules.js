@@ -17,7 +17,7 @@ const rules = {
       }
     }
   },
-  admin: {
+  role_admin: {
     static: [
       "posts:list",
       "posts:create",

@@ -8,7 +8,7 @@ const redirectHost = process.env.NODE_ENV === 'development' ? 'http://localhost:
 
 const oauth2 = simpleOauthModule.create({
     client: {
-      id: 'erp-web-app-id',
+      id: 'auth-client-web-id',
       secret: 'secret',
     },
     auth: {
@@ -52,8 +52,10 @@ app.get('/token', async (req, res) => {
       let data = {
         sub: decoded.user_name,
         email: decoded.email,
-        role: 'admin',
-        accessToken: accessToken.token.access_token
+        authorities: decoded.authorities,
+        permissions: decoded.permissions,
+        role: decoded.authorities,
+        accessToken: accessToken.token.access_token,
       };
 
       return res.status(200).json(data);

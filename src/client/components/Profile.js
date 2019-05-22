@@ -11,6 +11,7 @@ const Profile = () => (
           <li>ID: {user.id}</li>
           <li>Email: {user.email}</li>
           <li>Role: {user.role}</li>
+          <li>Permissions: {user.permissions}</li>
         </ul>
       </div>
     )}

@@ -3,6 +3,7 @@ import React from "react";
 import posts from "../posts";
 import {AuthConsumer} from "../authContext";
 import Can from "./Can";
+import MyCan from "./MyCan";
 
 const PostsList = () => (
   <AuthConsumer>
@@ -43,6 +44,24 @@ const PostsList = () => (
                     <button className="btn btn-sm btn-danger">
                       Delete Post
                     </button>
+                  )}
+                />
+                <MyCan
+                  rules = {user.permissions}
+                  perform="auth:roles:update"
+                  yes={() => (
+                      <button className="btn btn-sm btn-default">
+                      Edit Role
+                      </button>
+                  )}
+                />
+                <MyCan
+                  rules = {user.permissions}
+                  perform="auth:policies:update"
+                  yes={() => (
+                      <button className="btn btn-sm btn-default">
+                      Edit Policy
+                      </button>
                   )}
                 />
               </td>

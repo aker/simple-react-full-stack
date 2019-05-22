@@ -38,6 +38,8 @@ class Auth extends Component {
     const user = {
       id: data.sub,
       email: data.email,
+      authorities: data.authorities,
+      permissions: data.permissions,
       role: data.role
     };
     this.setState({
@@ -47,6 +49,7 @@ class Auth extends Component {
     });
 
     sessionStorage.setItem("access_token", data.accessToken);
+    sessionStorage.setItem("permissions", data.permissions);
   }
 
   render() {
