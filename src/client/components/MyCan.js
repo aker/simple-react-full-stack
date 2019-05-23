@@ -1,3 +1,6 @@
+import React from "react";
+import {AuthConsumer} from "../authContext";
+
 const check = (rules, action, data) => {
   let permissions = rules;
   console.info("MyCan:permissions=" + permissions);
@@ -28,10 +31,16 @@ const check = (rules, action, data) => {
   return false;
 };
 
-const MyCan = props =>
-  check(props.rules, props.perform, props.data)
-    ? props.yes()
-    : props.no();
+const MyCan = props => (
+  <AuthConsumer>
+    {({user}) => (
+        check(user.permissions, props.perform, props.data)
+        ? props.yes()
+        : props.no()
+      )
+    }
+  </AuthConsumer>
+);
 
 MyCan.defaultProps = {
   yes: () => null,

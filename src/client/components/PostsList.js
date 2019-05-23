@@ -47,7 +47,6 @@ const PostsList = () => (
                   )}
                 />
                 <MyCan
-                  rules = {user.permissions}
                   perform="auth:roles:update"
                   yes={() => (
                     <button className="btn btn-sm btn-default">
@@ -56,7 +55,6 @@ const PostsList = () => (
                   )}
                 />
                 <MyCan
-                  rules = {user.permissions}
                   perform="oa:notices:update"
                   yes={() => (
                     <button className="btn btn-sm btn-default">
