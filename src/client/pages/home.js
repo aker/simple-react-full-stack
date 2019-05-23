@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 
 import { AuthConsumer } from "../authContext";
 import Login from "../components/Login";
-import PostsList from "../components/PostsList";
 
 const HomePage = () => (
   <AuthConsumer>
@@ -14,7 +13,6 @@ const HomePage = () => (
         <div>
           <h2>Welcome to React RBAC Tutorial.</h2>
           <Login />
-          <PostsList />
         </div>
       )
     }

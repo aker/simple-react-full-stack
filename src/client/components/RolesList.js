@@ -3,7 +3,7 @@ import MyCan from "./MyCan";
 
 export default class RolesList extends Component {
     state = {
-        roles: ""
+        roles: null
     }
 
     componentDidMount() {
@@ -16,7 +16,7 @@ export default class RolesList extends Component {
         }
         
         console.log("roleslist:accesstoken=", this.props.accessToken);
-        fetch("http://localhost:8080/api/roles?code=role_user", requestOptions)
+        fetch("http://localhost:8080/api/roles", requestOptions)
             .then(res => res.json())
             .then(data => {
                 console.log("roleslist.data:", data);
@@ -25,8 +25,8 @@ export default class RolesList extends Component {
     }
 
     render() {
-        const role = this.state.roles;
-        console.log("RolesList:render() roleList=", role);
+        const roles = this.state.roles;
+        console.log("RolesList:render() roleList=", roles);
 
         return (
             <div>
@@ -41,9 +41,9 @@ export default class RolesList extends Component {
                     </tr>
                     </thead>
                     <tbody>
-                        {role && (
+                        {roles && roles.map((role, index) => (
                             <tr key={role.id}>
-                            <th scope="row">{1}</th>
+                            <th scope="row">{index + 1}</th>
                             <td>{role.code}</td>
                             <td>{role.name}</td>
                             <td>
@@ -65,7 +65,7 @@ export default class RolesList extends Component {
                                 />
                             </td>
                             </tr>
-                        )}
+                        ))}
                     </tbody>
                 </table>
             </div>
