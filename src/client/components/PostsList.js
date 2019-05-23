@@ -57,10 +57,10 @@ const PostsList = () => (
                 />
                 <MyCan
                   rules = {user.permissions}
-                  perform="auth:policies:update"
+                  perform="oa:notices:update"
                   yes={() => (
                     <button className="btn btn-sm btn-default">
-                      Edit Policy
+                      Edit Notice
                     </button>
                   )}
                 />

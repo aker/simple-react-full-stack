@@ -1,7 +1,6 @@
 const check = (rules, action, data) => {
-  // let permissions = sessionStorage.getItem("permissions");
   let permissions = rules;
-  console.info("MyCan:permissions" + permissions);
+  console.info("MyCan:permissions=" + permissions);
 
   if (!permissions) {
     // role is not present in the rules

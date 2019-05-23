@@ -5,23 +5,27 @@ class Auth extends Component {
   state = {
     authenticated: false,
     user: {
-      role: "visitor"
+      role: "visitor",
+      permissions: "",
     },
     accessToken: ""
   };
-
-  initiateLogin = () => {
-    window.location.href = '/auth';
-  };
-
+  
   logout = () => {
     this.setState({
       authenticated: false,
       user: {
-        role: "visitor"
+        role: "visitor",
+        permissions: "",
       },
       accessToken: ""
     });
+
+    sessionStorage.removeItem("access_token");
+  };
+
+  initiateLogin = () => {
+    window.location.href = '/auth';
   };
 
   handleAuthentication = () => {
@@ -49,7 +53,6 @@ class Auth extends Component {
     });
 
     sessionStorage.setItem("access_token", data.accessToken);
-    sessionStorage.setItem("permissions", data.permissions);
   }
 
   render() {
