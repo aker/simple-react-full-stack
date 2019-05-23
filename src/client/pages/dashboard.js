@@ -6,10 +6,11 @@ import Can from "../components/Can";
 import Logout from "../components/Logout";
 import Profile from "../components/Profile";
 import PostsList from "../components/PostsList";
+import RolesList from "../components/RolesList";
 
 const DashboardPage = () => (
   <AuthConsumer>
-    {({ user }) => (
+    {({user, accessToken}) => (
       <Can
         role={user.role}
         perform="dashboard-page:visit"
@@ -19,6 +20,7 @@ const DashboardPage = () => (
             <Logout />
             <Profile />
             <PostsList />
+            <RolesList accessToken={accessToken} />
           </div>
         )}
         no={() => <Redirect to="/" />}
