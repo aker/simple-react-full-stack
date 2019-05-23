@@ -7,6 +7,7 @@ import Logout from "../components/Logout";
 import Profile from "../components/Profile";
 import PostsList from "../components/PostsList";
 import RolesList from "../components/RolesList";
+import MyCan from "../components/MyCan";
 
 const DashboardPage = () => (
   <AuthConsumer>
@@ -20,7 +21,9 @@ const DashboardPage = () => (
             <Logout />
             <Profile />
             <PostsList />
-            <RolesList accessToken={accessToken} />
+            <MyCan 
+              perform="auth:roles:query" 
+              yes={() => <RolesList accessToken={accessToken} />} />
           </div>
         )}
         no={() => <Redirect to="/" />}
