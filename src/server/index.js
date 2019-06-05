@@ -56,6 +56,7 @@ app.get('/token', async (req, res) => {
         permissions: decoded.permissions,
         role: decoded.authorities,
         accessToken: accessToken.token.access_token,
+        baseApiURL: server.BASE_API_URL,
       };
 
       return res.status(200).json(data);

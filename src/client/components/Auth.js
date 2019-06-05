@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {AuthProvider} from "../authContext";
+import ErpApi from "../utils/api";
 
 class Auth extends Component {
   state = {
@@ -8,7 +9,9 @@ class Auth extends Component {
       role: "visitor",
       permissions: "",
     },
-    accessToken: ""
+    accessToken: "",
+    baseURL: "/",
+    roles: null,
   };
   
   logout = () => {
@@ -18,10 +21,13 @@ class Auth extends Component {
         role: "visitor",
         permissions: "",
       },
-      accessToken: ""
+      accessToken: "",
+      baseURL: "/",
+      roles: null,
     });
 
-    sessionStorage.removeItem("access_token");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("base_url");
   };
 
   initiateLogin = () => {
@@ -35,6 +41,7 @@ class Auth extends Component {
       .then((data) => {
         console.log("Auth.js:data = ", data);
         this.setSession(data);
+        this.initDatas(data);
       });
   };
 
@@ -46,13 +53,28 @@ class Auth extends Component {
       permissions: data.permissions,
       role: data.role
     };
+    
+    localStorage.setItem("base_url", 'http://localhost:8080/api');
+    localStorage.setItem("access_token", data.accessToken);
+
     this.setState({
       authenticated: true,
       accessToken: data.accessToken,
       user
     });
+  }
 
-    sessionStorage.setItem("access_token", data.accessToken);
+  initDatas(data) {
+    ErpApi.get('/roles', {
+      baseURL: data.baseApiURL,
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Bearer ' + data.accessToken,
+      }
+    }).then(response => {
+          console.log("roleslist.data:", response.data);
+          this.setState({roles: response.data});
+    });
   }
 
   render() {
@@ -62,6 +84,7 @@ class Auth extends Component {
       handleAuthentication: this.handleAuthentication,
       logout: this.logout
     };
+
     return (
       <AuthProvider value={authProviderValue}>
         {this.props.children}

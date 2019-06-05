@@ -9,7 +9,7 @@ import MyCan from "../components/MyCan";
 
 const DashboardPage = () => (
   <AuthConsumer>
-    {({authenticated, accessToken}) => 
+    {({authenticated, roles}) => 
         authenticated ? (
           <div>
             <h1>Dashboard</h1>
@@ -17,7 +17,7 @@ const DashboardPage = () => (
             <Profile />
             <MyCan 
               perform="auth:roles:query" 
-              yes={() => <RolesList accessToken={accessToken} />} />
+              yes={() => <RolesList roles={roles}/>} />
           </div>
         ) : (<Redirect to="/" />)
     }
