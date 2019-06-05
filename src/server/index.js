@@ -1,20 +1,20 @@
+const server = require('./server-config');
 const express = require('express');
 const os = require('os');
-
 const simpleOauthModule = require('simple-oauth2');
 const jwt = require('jsonwebtoken');
 
-const redirectHost = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'http://localhost:8580';
+const redirectHost = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'http://localhost:' + server.PORT;
 
 const oauth2 = simpleOauthModule.create({
     client: {
-      id: 'auth-client-web-id',
-      secret: 'secret',
+      id: server.AUTH_CONFIG.clientId,
+      secret: server.AUTH_CONFIG.clientSecret,
     },
     auth: {
-      tokenHost: 'http://localhost:8181',
-      tokenPath: '/oauth/token',
-      authorizePath: '/oauth/authorize'
+      tokenHost: server.AUTH_CONFIG.tokenHost,
+      tokenPath: server.AUTH_CONFIG.tokenPath,
+      authorizePath: server.AUTH_CONFIG.authorizePath
     },
 });
 
@@ -56,6 +56,7 @@ app.get('/token', async (req, res) => {
         permissions: decoded.permissions,
         role: decoded.authorities,
         accessToken: accessToken.token.access_token,
+        baseApiURL: server.BASE_API_URL,
       };
 
       return res.status(200).json(data);
@@ -65,4 +66,4 @@ app.get('/token', async (req, res) => {
     }
 });
 
-app.listen(process.env.PORT || 8580, () => console.log(`Listening on port ${process.env.PORT || 8580}!`));
+app.listen(process.env.PORT || server.PORT, () => console.log(`Listening on port ${process.env.PORT || server.PORT}!`));

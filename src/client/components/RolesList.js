@@ -2,30 +2,9 @@ import React, {Component} from "react";
 import MyCan from "./MyCan";
 
 export default class RolesList extends Component {
-    state = {
-        roles: null
-    }
-
-    componentDidMount() {
-        const requestOptions = {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Bearer ' + this.props.accessToken,
-            },
-            method: 'GET'
-        }
-        
-        console.log("roleslist:accesstoken=", this.props.accessToken);
-        fetch("http://localhost:8080/api/roles", requestOptions)
-            .then(res => res.json())
-            .then(data => {
-                console.log("roleslist.data:", data);
-                this.setState({roles: data});
-            });
-    }
 
     render() {
-        const roles = this.state.roles;
+        const roles = this.props.roles;
         console.log("RolesList:render() roleList=", roles);
 
         return (
