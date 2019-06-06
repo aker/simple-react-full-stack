@@ -10,7 +10,7 @@ class Auth extends Component {
       permissions: "",
     },
     accessToken: "",
-    baseURL: "/",
+    baseApiURL: "/",
     roles: null,
   };
   
@@ -22,12 +22,12 @@ class Auth extends Component {
         permissions: "",
       },
       accessToken: "",
-      baseURL: "/",
+      baseApiURL: "/",
       roles: null,
     });
 
     localStorage.removeItem("access_token");
-    localStorage.removeItem("base_url");
+    localStorage.removeItem("base_api_url");
   };
 
   initiateLogin = () => {
@@ -54,7 +54,7 @@ class Auth extends Component {
       role: data.role
     };
     
-    localStorage.setItem("base_url", 'http://localhost:8080/api');
+    localStorage.setItem("base_api_url", data.baseApiURL);
     localStorage.setItem("access_token", data.accessToken);
 
     this.setState({
@@ -65,16 +65,17 @@ class Auth extends Component {
   }
 
   initDatas(data) {
-    ErpApi.get('/roles', {
-      baseURL: data.baseApiURL,
-      headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Authorization': 'Bearer ' + data.accessToken,
-      }
-    }).then(response => {
-          console.log("roleslist.data:", response.data);
-          this.setState({roles: response.data});
-    });
+    ErpApi.defaults.baseURL = data.baseApiURL;
+    ErpApi.defaults.headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + data.accessToken,
+    }
+
+    ErpApi.get('/roles')
+      .then(response => {
+        console.log("roleslist.data:", response.data);
+        this.setState({roles: response.data});
+      });
   }
 
   render() {

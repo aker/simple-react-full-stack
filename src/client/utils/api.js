@@ -10,10 +10,4 @@ import axios from "axios";
 
 // var baseURL = '/';
 
-export default axios.create({
-    baseURL: localStorage.getItem('base_url'),
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
-    }
-});
+export default axios.create();
