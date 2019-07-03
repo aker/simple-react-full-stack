@@ -9,7 +9,7 @@ const AUTH_CONFIG = {
 }
 
 // const BASE_API_URL = "http://localhost:8080/api";
-const BASE_API_URL = process.env.BASE_API_URL ? process.env.BASE_API_URL : 'http://localhost:8181';
+const BASE_API_URL = process.env.BASE_API_URL ? process.env.BASE_API_URL : 'http://localhost:8080/api';
 
 module.exports = {
     PORT: PORT,

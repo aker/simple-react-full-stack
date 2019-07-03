@@ -6,6 +6,7 @@ const authContext = createContext({
   accessToken: "", // accessToken of user for Auth0
   baseApiURL: "/",
   roles: null,
+  notices: [],
   initiateLogin: () => {}, // to start the login process
   handleAuthentication: () => {}, // handle Auth0 login process
   logout: () => {} // logout the user

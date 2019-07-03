@@ -12,6 +12,7 @@ class Auth extends Component {
     accessToken: "",
     baseApiURL: "/",
     roles: null,
+    notices: [],
   };
   
   logout = () => {
@@ -24,6 +25,7 @@ class Auth extends Component {
       accessToken: "",
       baseApiURL: "/",
       roles: null,
+      notices: [],
     });
 
     localStorage.removeItem("access_token");
@@ -76,6 +78,11 @@ class Auth extends Component {
         console.log("roleslist.data:", response.data);
         this.setState({roles: response.data});
       });
+    
+    ErpApi.get('/notices')
+      .then(response => {
+        this.setState({notices: response.data});
+      })
   }
 
   render() {
