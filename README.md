@@ -57,7 +57,13 @@ yarn build (or npm run build)
 # Start production server
 yarn start (or npm start)
 ```
+## Run in docker
 
+```bash
+docker build -t erp-admin-web-frontend .
+
+docker run --name erp-admin-web-frontend -p 8580:8580 -e TOKEN_HOST="http://10.169.2.187:8181" -e BASE_API_URL="http://10.169.2.187:8181"  -e CLIENT_ID="auth-client-web-id" -e CLIENT_SECRET="secret" erp-admin-web-frontend
+```
 ## Documentation
 
 ### Folder Structure
